@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Query Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+  <% if(data) { %>
+    <% if(data.length===0) { %>
+      <p>No students found</p>
+      <% } else { %>
+
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Roll</th>
+            <th>Dept</th>
+          </tr>
+          <% data.forEach(function(student) { %>
+            <tr>
+              <td>
+                <a href="/student/<%= student.roll %>">
+                  <%= student.name %>
+                </a>
+              </td>
+              <td>
+                <a href="/student/<%= student.roll %>">
+                  <%= student.roll %>
+                </a>
+              </td>
+              <td>
+                <a href="/student/<%= student.roll %>">
+                  <%= student.department %>
+                </a>
+              </td>
+            </tr>
+            <% }) %>
+        </table>
+
+
+
+
+        <% } %>
+          <% } else if(error) { %>
+            <p>
+              <%= error %>
+            </p>
+            <% } else { %>
+              <form method="post">
+                <h2>Student Query Form</h2>
+                <label for="skills">Enter Skills:</label>
+                <input type="text" id="skills" name="skills" placeholder="Enter skills separated by commas" required />
+                <input type="submit" value="Search" />
+              </form>
+              <% } %>
+
+</body>
+
+</html>

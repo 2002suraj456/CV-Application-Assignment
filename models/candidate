@@ -1,0 +1,42 @@
+const mongoose = require('mongoose');
+
+const candidateSchema = mongoose.Schema({
+    roll: {
+        type: Number,
+        required: true,
+        unique: true,
+        // length: 9
+    },
+    name: {
+        type: String,
+        required: true
+        // minlength: 5,
+        // maxlength: 20
+    },
+    dept:{
+        type:String,
+        required:true
+    },
+    degree:{
+        type:String,
+        required:true
+    },
+    college:{
+        type:String,
+        required:true
+    },
+    skills:{
+        type:String,
+        required:true
+    },
+    photo:{
+        type:String,
+        required:true
+    },
+    resume:{
+        type:String,
+        required:true
+    }
+},{timestamps: true});
+
+module.exports = mongoose.model('candidate',candidateSchema);
